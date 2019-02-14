@@ -4,6 +4,7 @@
   "homepage": "http://acailly.github.io/scan-and-give",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^3.9.2",
     "jsqr": "^1.1.1",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",

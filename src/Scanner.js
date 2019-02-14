@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import jsQR from "jsqr";
 
-class Home extends Component {
+class Scanner extends Component {
   videoRef = React.createRef();
   canvasRef = React.createRef();
   state = {
@@ -166,4 +166,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default Scanner;

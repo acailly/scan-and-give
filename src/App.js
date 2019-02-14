@@ -1,14 +1,16 @@
 import React, {Component} from "react";
-import Home from "./Home";
 import Identite from "./Identite";
 import {BrowserRouter, Route} from "react-router-dom";
+import Associations from "./Associations";
+import Scanner from "./Scanner";
 
 class App extends Component {
   render() {
     return (
       <BrowserRouter>
         <div>
-          <Route exact path="/" component={Home}/>
+          <Route exact path="/" component={Associations}/>
+          <Route path="/scanner" component={Scanner}/>
           <Route path="/identite" component={Identite}/>
         </div>
       </BrowserRouter>
