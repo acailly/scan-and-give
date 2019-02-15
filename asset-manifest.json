@@ -1,13 +1,13 @@
 {
-  "main.css": "/scan-and-give/static/css/main.5874f546.chunk.css",
-  "main.js": "/scan-and-give/static/js/main.1dca58cf.chunk.js",
-  "main.js.map": "/scan-and-give/static/js/main.1dca58cf.chunk.js.map",
-  "static/js/1.e6b582fb.chunk.js": "/scan-and-give/static/js/1.e6b582fb.chunk.js",
-  "static/js/1.e6b582fb.chunk.js.map": "/scan-and-give/static/js/1.e6b582fb.chunk.js.map",
+  "main.css": "/scan-and-give/static/css/main.edadf753.chunk.css",
+  "main.js": "/scan-and-give/static/js/main.b1976813.chunk.js",
+  "main.js.map": "/scan-and-give/static/js/main.b1976813.chunk.js.map",
+  "static/js/1.82d1ab0b.chunk.js": "/scan-and-give/static/js/1.82d1ab0b.chunk.js",
+  "static/js/1.82d1ab0b.chunk.js.map": "/scan-and-give/static/js/1.82d1ab0b.chunk.js.map",
   "runtime~main.js": "/scan-and-give/static/js/runtime~main.50c8b04a.js",
   "runtime~main.js.map": "/scan-and-give/static/js/runtime~main.50c8b04a.js.map",
-  "static/css/main.5874f546.chunk.css.map": "/scan-and-give/static/css/main.5874f546.chunk.css.map",
+  "static/css/main.edadf753.chunk.css.map": "/scan-and-give/static/css/main.edadf753.chunk.css.map",
   "index.html": "/scan-and-give/index.html",
-  "precache-manifest.b33a2528f67da875ea59ef9726c4db88.js": "/scan-and-give/precache-manifest.b33a2528f67da875ea59ef9726c4db88.js",
+  "precache-manifest.96f4620406d611ba0922d9457f767008.js": "/scan-and-give/precache-manifest.96f4620406d611ba0922d9457f767008.js",
   "service-worker.js": "/scan-and-give/service-worker.js"
 }
