@@ -1,0 +1,14 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start-server": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "lodash-id": "^0.14.0",
+    "lowdb": "^1.0.0"
+  }
+}
