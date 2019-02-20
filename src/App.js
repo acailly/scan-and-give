@@ -10,7 +10,7 @@ class App extends Component {
       <BrowserRouter basename="/scan-and-give">
         <div>
           <Route exact path="/" component={Associations} />
-          <Route path="/scanner" component={Scanner} />
+          <Route path="/scanner/:associationId" component={Scanner} />
           <Route path="/identite" component={Identite} />
         </div>
       </BrowserRouter>

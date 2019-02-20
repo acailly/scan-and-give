@@ -44,11 +44,11 @@ class Association extends Component {
           <Typography gutterBottom variant="h5" component="h2">
             {this.props.nom}
           </Typography>
-          <Typography component="p" dangerouslySetInnerHTML={{ __html: this.props.description.replace(/\n/g, '<br />')}}>
+          <Typography component="p" dangerouslySetInnerHTML={{__html: this.props.description.replace(/\n/g, '<br />')}}>
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="large" color="primary" component={Link} to="/scanner">
+          <Button size="large" color="primary" component={Link} to={"/scanner/" + this.props.id}>
             Soutenir
           </Button>
         </CardActions>

@@ -54,6 +54,7 @@ class Associations extends Component {
         {this.state.associations.map(a => (
           <Association
             key={a.id}
+            id={a.id}
             nom={a.nom}
             image={a.image}
             description={a.description}

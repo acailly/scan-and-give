@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import jsQR from "jsqr";
+import axios from "axios";
 
 class Scanner extends Component {
   videoRef = React.createRef();
@@ -7,10 +8,16 @@ class Scanner extends Component {
   state = {
     loading: true,
     code: null,
-    videoDevices: []
+    videoDevices: [],
+    association: null
   };
 
   componentDidMount() {
+    axios.get('/api/associations/' + this.props.match.params.associationId).then(response => {
+      this.setState({association: response.data})
+    }).catch(error => {
+      console.log(error);
+    });
     navigator.mediaDevices.enumerateDevices().then(this.onEnumerateDevices);
 
     //TODO ACY Select webcam : https://www.twilio.com/blog/2018/04/choosing-cameras-javascript-mediadevices-api.html
@@ -30,20 +37,6 @@ class Scanner extends Component {
         video.play();
         requestAnimationFrame(this.tick);
       });
-  }
-
-  componentDidUpdate() {
-    if (!this.state.loading) {
-      if (this.state.code) {
-        this.drawLineAroundQRCode(this.state.code);
-        // outputMessage.hidden = true;
-        // outputData.parentElement.hidden = false;
-        // outputData.innerText = code.data;
-      } else {
-        // outputMessage.hidden = false;
-        // outputData.parentElement.hidden = true;
-      }
-    }
   }
 
   tick = () => {
@@ -88,63 +81,6 @@ class Scanner extends Component {
         }
       }
     }
-  };
-
-  drawLineAroundQRCode = code => {
-    let color = "#FF3B58";
-    const isLeft =
-      code.location.topLeftCorner.x < this.state.canvasWidth / 2 &&
-      code.location.topRightCorner.x < this.state.canvasWidth / 2;
-    const isRight =
-      code.location.topLeftCorner.x > this.state.canvasWidth / 2 &&
-      code.location.topRightCorner.x > this.state.canvasWidth / 2;
-    const isUp =
-      code.location.topLeftCorner.y < this.state.canvasHeight / 2 &&
-      code.location.bottomLeftCorner.y < this.state.canvasHeight / 2;
-    const isDown =
-      code.location.topLeftCorner.y > this.state.canvasHeight / 2 &&
-      code.location.bottomLeftCorner.y > this.state.canvasHeight / 2;
-
-    if (isUp && isLeft) {
-      color = "#00FF00"; // GREEN
-    } else if (isUp && isRight) {
-      color = "#0000FF"; // BLUE
-    } else if (isDown && isLeft) {
-      color = "#00FFFF"; // JAUNE
-    } else if (isDown && isRight) {
-      color = "#FFFF00"; // CYAN
-    }
-
-    this.drawLineOnCanvas(
-      code.location.topLeftCorner,
-      code.location.topRightCorner,
-      color
-    );
-    this.drawLineOnCanvas(
-      code.location.topRightCorner,
-      code.location.bottomRightCorner,
-      color
-    );
-    this.drawLineOnCanvas(
-      code.location.bottomRightCorner,
-      code.location.bottomLeftCorner,
-      color
-    );
-    this.drawLineOnCanvas(
-      code.location.bottomLeftCorner,
-      code.location.topLeftCorner,
-      color
-    );
-  };
-
-  drawLineOnCanvas = (begin, end, color) => {
-    const canvasContext = this.canvasRef.current.getContext("2d");
-    canvasContext.beginPath();
-    canvasContext.moveTo(begin.x, begin.y);
-    canvasContext.lineTo(end.x, end.y);
-    canvasContext.lineWidth = 4;
-    canvasContext.strokeStyle = color;
-    canvasContext.stroke();
   };
 
   onEnumerateDevices = mediaDevices => {
