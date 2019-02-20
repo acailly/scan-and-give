@@ -1,23 +1,54 @@
 import React, {Component} from "react";
 import jsQR from "jsqr";
-import axios from "axios";
+import api from "./api";
+import CardMedia from "@material-ui/core/CardMedia";
+import {withStyles} from "@material-ui/core";
+import objectHash from 'object-hash';
+import Modal from "@material-ui/core/Modal";
+import Icon from "@material-ui/core/Icon";
+
+const styles = theme => ({
+  cardImage: {
+    height: 180,
+    width: 450,
+    backgroundSize: 'contain',
+    alignSelf: 'center'
+  },
+  resume: {
+    display: 'flex',
+    alignItems: 'center',
+    padding: '10px'
+  },
+  layout: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
+  },
+  modal: {
+    position: "absolute",
+    width: theme.spacing.unit * 50,
+    backgroundColor: theme.palette.background.paper,
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing.unit * 4,
+    top: '50%',
+    left: '50%',
+    transform: `translate(-50%, -50%)`,
+  }
+});
 
 class Scanner extends Component {
   videoRef = React.createRef();
   canvasRef = React.createRef();
   state = {
     loading: true,
-    code: null,
     videoDevices: [],
-    association: null
+    association: null,
+    donExist: false,
+    sending: false
   };
 
   componentDidMount() {
-    axios.get('/api/associations/' + this.props.match.params.associationId).then(response => {
-      this.setState({association: response.data})
-    }).catch(error => {
-      console.log(error);
-    });
+    api.getAssociation(this.props.match.params.associationId).then(response => this.setState({association: response}));
     navigator.mediaDevices.enumerateDevices().then(this.onEnumerateDevices);
 
     //TODO ACY Select webcam : https://www.twilio.com/blog/2018/04/choosing-cameras-javascript-mediadevices-api.html
@@ -49,8 +80,6 @@ class Scanner extends Component {
     if (this.state.loading && video.readyState === video.HAVE_ENOUGH_DATA) {
       this.setState({
         loading: false,
-        canvasWidth: video.videoWidth,
-        canvasHeight: video.videoHeight
       });
       return;
     }
@@ -72,12 +101,20 @@ class Scanner extends Component {
         const code = jsQR(imageData.data, imageData.width, imageData.height, {
           inversionAttempts: "dontInvert"
         });
-        this.setState({code});
-        if (code && code.data) {
-          this.props.history.push({
-            pathname: '/identite',
-            state: {code: code.data}
-          });
+        if (code && code.data && !this.state.donExist && !this.state.sending) {
+          this.setState({sending: true});
+          api
+            .addDon(objectHash(code.data), new Date(), parseInt(this.props.match.params.associationId))
+            .then(() => {
+              this.props.history.push({
+                pathname: '/done',
+              });
+            })
+            .catch(error => {
+              if (error.response.status === 400) {
+                this.setState({donExist: true})
+              }
+            });
         }
       }
     }
@@ -90,16 +127,64 @@ class Scanner extends Component {
     this.setState({videoDevices});
   };
 
+  getAssociation = () => {
+    if (this.state.association) {
+      const {classes} = this.props;
+      return (
+        <div className={classes.resume}>
+          <CardMedia
+            className={classes.cardImage}
+            image={'/' + this.state.association.image}
+            title={this.state.association.nom}
+          />
+          <h1>{this.state.association.nom}</h1>
+        </div>
+      );
+    } else {
+      return (<div></div>);
+    }
+  };
+
+  getModalStyle() {
+    const top = 50;
+    const left = 50;
+
+    return {
+      top: `${top}%`,
+      left: `${left}%`,
+      transform: `translate(-${top}%, -${left}%)`,
+    };
+  }
+
+  handleClose = () => {
+    this.setState({donExist: false});
+  };
+
   render() {
+    const {classes} = this.props;
     return (
       <div>
-        {this.state.loading && <p>Loading...</p>}
-        <p>{this.state.code ? this.state.code.data : "Scan to give 1€"}</p>
-        <video ref={this.videoRef} hidden/>
-        <canvas ref={this.canvasRef} hidden={this.state.loading}/>
+        <Modal
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+          open={this.state.donExist}
+          onClose={this.handleClose}
+        >
+          <div className={classes.modal}>
+            <Icon color={"error"}>warning</Icon>
+            Vous avez déjà donné
+          </div>
+        </Modal>
+        <div className={classes.layout}>
+          {this.getAssociation()}
+          <div>
+            <video ref={this.videoRef} hidden/>
+            <canvas ref={this.canvasRef} hidden={this.state.loading}/>
+          </div>
+        </div>
       </div>
     );
   }
 }
 
-export default Scanner;
+export default withStyles(styles)(Scanner);

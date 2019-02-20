@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
 import {Link} from 'react-router-dom';
+import Icon from "@material-ui/core/Icon";
 
 const styles = () => ({
   card: {
@@ -22,7 +23,10 @@ const styles = () => ({
   },
   cardContent: {
     flexGrow: 1
-  }
+  },
+  rightIcon: {
+    marginLeft: 8,
+  },
 });
 
 class Association extends Component {
@@ -50,6 +54,9 @@ class Association extends Component {
         <CardActions>
           <Button size="large" color="primary" component={Link} to={"/scanner/" + this.props.id}>
             Soutenir
+            <Icon className={classes.rightIcon} color="primary">
+              card_giftcard
+            </Icon>
           </Button>
         </CardActions>
       </Card>

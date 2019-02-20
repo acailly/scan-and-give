@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Identite from "./Identite";
+import Done from "./Done";
 import { BrowserRouter, Route } from "react-router-dom";
 import Associations from "./Associations";
 import Scanner from "./Scanner";
@@ -11,7 +11,7 @@ class App extends Component {
         <div>
           <Route exact path="/" component={Associations} />
           <Route path="/scanner/:associationId" component={Scanner} />
-          <Route path="/identite" component={Identite} />
+          <Route path="/done" component={Done} />
         </div>
       </BrowserRouter>
     );
