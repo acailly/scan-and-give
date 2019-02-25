@@ -51,10 +51,18 @@ app.get("/api/dons", function(req, res) {
   const donsByAssociationId = db
     .get("dons")
     .groupBy("associationId")
-    .map((dons, associationId) => ({
-      associationId,
-      dons: dons.length
-    }))
+    .map((dons, associationId) => {
+      const association = db
+        .get("associations")
+        .find({ id: parseInt(associationId) })
+        .value();
+      return {
+        associationId,
+        association: association.nom,
+        image: association.image,
+        dons: dons.length
+      };
+    })
     .value();
   res.send(donsByAssociationId);
 });

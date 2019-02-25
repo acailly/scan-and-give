@@ -9,14 +9,17 @@ if (!MOCKED) {
   api = {
     getAssociations: () =>
       axios.get("/api/associations").then(response => response.data),
-    getAssociation: (id) =>
-      axios.get('/api/associations/' + id).then(response => response.data),
+    getAssociation: id =>
+      axios.get("/api/associations/" + id).then(response => response.data),
     addDon: (hash, date, associationId) =>
-      axios.post('/api/dons', JSON.stringify({hash, date, associationId}), {
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      }).then(response => response.data)
+      axios
+        .post("/api/dons", JSON.stringify({ hash, date, associationId }), {
+          headers: {
+            "Content-Type": "application/json"
+          }
+        })
+        .then(response => response.data),
+    getDons: () => axios.get("/api/dons").then(response => response.data)
   };
 } else {
   api = {
@@ -42,6 +45,27 @@ if (!MOCKED) {
           image: "action_contre_faim.png",
           description:
             "Action contre la Faim lutte contre la faim dans le monde. Sa mission est de sauver des vies en éliminant la faim par la prévention,\nla détection et le traitement de la sous-nutrition, en particulier pendant et après les situations d’urgence liées aux conflits et aux catastrophes naturelles."
+        }
+      ]),
+    getDons: () =>
+      Promise.resolve([
+        {
+          associationId: "1",
+          association: "Bretagne Vivante",
+          image: "logo_bretagnevivante.png",
+          dons: 1
+        },
+        {
+          associationId: "2",
+          association: "APF France Handicap",
+          image: "apf.png",
+          dons: 2
+        },
+        {
+          associationId: "3",
+          association: "Action contre la Faim",
+          image: "action_contre_faim.png",
+          dons: 1
         }
       ])
   };

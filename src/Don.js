@@ -4,10 +4,6 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import { withStyles } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
-import CardActions from "@material-ui/core/CardActions";
-import Button from "@material-ui/core/Button";
-import { Link } from "react-router-dom";
-import Icon from "@material-ui/core/Icon";
 
 const styles = () => ({
   card: {
@@ -22,18 +18,16 @@ const styles = () => ({
     alignSelf: "center"
   },
   cardContent: {
-    flexGrow: 1
+    display: "flex",
+    flexDirection: "column",
+    flexGrow: 1,
+    justifyContent: "center"
   },
   rightIcon: {
     marginLeft: 8
   }
 });
-
-class Association extends Component {
-  state = {
-    associations: []
-  };
-
+class Don extends Component {
   render() {
     const { classes } = this.props;
     return (
@@ -41,35 +35,19 @@ class Association extends Component {
         <CardMedia
           className={classes.cardImage}
           image={this.props.image}
-          title={this.props.nom}
+          title={this.props.association}
         />
         <CardContent className={classes.cardContent}>
           <Typography gutterBottom variant="h5" component="h2">
-            {this.props.nom}
+            {this.props.association}
           </Typography>
-          <Typography
-            component="p"
-            dangerouslySetInnerHTML={{
-              __html: this.props.description.replace(/\n/g, "<br />")
-            }}
-          />
+          <Typography variant="h2" component="h1">
+            {this.props.nombre}€ grâce à vous !
+          </Typography>
         </CardContent>
-        <CardActions>
-          <Button
-            size="large"
-            color="primary"
-            component={Link}
-            to={"/scanner/" + this.props.id}
-          >
-            Soutenir
-            <Icon className={classes.rightIcon} color="primary">
-              card_giftcard
-            </Icon>
-          </Button>
-        </CardActions>
       </Card>
     );
   }
 }
 
-export default withStyles(styles)(Association);
+export default withStyles(styles)(Don);

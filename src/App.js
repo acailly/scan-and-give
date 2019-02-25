@@ -3,6 +3,7 @@ import Done from "./Done";
 import { BrowserRouter, Route } from "react-router-dom";
 import Associations from "./Associations";
 import Scanner from "./Scanner";
+import Dons from "./Dons";
 
 class App extends Component {
   render() {
@@ -12,6 +13,7 @@ class App extends Component {
           <Route exact path="/" component={Associations} />
           <Route path="/scanner/:associationId" component={Scanner} />
           <Route path="/done" component={Done} />
+          <Route path="/dons" component={Dons} />
         </div>
       </BrowserRouter>
     );
