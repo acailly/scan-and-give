@@ -1,23 +1,24 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import CardMedia from "@material-ui/core/CardMedia";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import {withStyles} from "@material-ui/core";
+import { withStyles } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
-import CardActions from "@material-ui/core/CardActions";
-import Button from "@material-ui/core/Button";
-import {Link} from "react-router-dom";
-import Icon from "@material-ui/core/Icon";
+import ButtonBase from "@material-ui/core/ButtonBase";
+import { Link } from "react-router-dom";
 
 const styles = () => ({
   titre: {
-    color: '#c31436'
+    color: "#C00"
   },
   card: {
     display: "flex",
     marginBottom: 15,
     minHeight: 200,
-    backgroundColor: '#afb0af'
+    backgroundColor: "#afb0af",
+    fontFamily: "Ghostbusters",
+    fontStyle: "normal",
+    fontWeight: 400
   },
   cardImage: {
     height: 180,
@@ -30,15 +31,15 @@ const styles = () => ({
   },
   rightIcon: {
     marginLeft: 8,
-    color: '#c31436'
+    color: "#C00"
   },
   button: {
-    color: '#c31436'
+    color: "#C00"
   },
   textButton: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center'
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center"
   }
 });
 
@@ -48,42 +49,26 @@ class Association extends Component {
   };
 
   render() {
-    const {classes} = this.props;
+    const { classes } = this.props;
     return (
-      <Card className={classes.card}>
-        <CardMedia
-          className={classes.cardImage}
-          image={this.props.image}
-          title={this.props.nom}
-        />
-        <CardContent className={classes.cardContent}>
-          <h2 className={classes.titre}>
-            {this.props.nom}
-          </h2>
-          <Typography
-            component="p"
-            dangerouslySetInnerHTML={{
-              __html: this.props.description.replace(/\n/g, "<br />")
-            }}
+      <ButtonBase focusRipple component={Link} to={"/scanner/" + this.props.id}>
+        <Card className={classes.card}>
+          <CardMedia
+            className={classes.cardImage}
+            image={this.props.image}
+            title={this.props.nom}
           />
-        </CardContent>
-        <CardActions>
-          <Button
-            className={classes.button}
-            size="large"
-            color="primary"
-            component={Link}
-            to={"/scanner/" + this.props.id}
-          >
-            <div className={classes.textButton}>
-              <span>Soutenir</span>
-              <Icon className={classes.rightIcon}>
-                card_giftcard
-              </Icon>
-            </div>
-          </Button>
-        </CardActions>
-      </Card>
+          <CardContent className={classes.cardContent}>
+            <h2 className={classes.titre}>{"Soutenir " + this.props.nom}</h2>
+            <Typography
+              component="p"
+              dangerouslySetInnerHTML={{
+                __html: this.props.description.replace(/\n/g, "<br />")
+              }}
+            />
+          </CardContent>
+        </Card>
+      </ButtonBase>
     );
   }
 }

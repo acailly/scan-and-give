@@ -14,10 +14,11 @@ const styles = () => ({
     fontSize: 64,
     display: "flex",
     alignItems: "center",
-    backgroundColor: "#2b2c2c"
+    backgroundColor: "#2b2c2c",
+    justifyContent: "center",
+    paddingTop: "10px"
   },
   title: {
-    flexGrow: 2,
     color: "#4e7b53",
     textShadow:
       "0 0 5px #fff, 0 0 10px #fff, 0 0 20px #4e7b53, 0 0 30px #4e7b53, 0 0 40px #4e7b53, 0 0 55px #4e7b53, 0 0 75px #4e7b53"
