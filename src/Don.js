@@ -9,7 +9,8 @@ const styles = () => ({
   card: {
     display: "flex",
     marginBottom: 15,
-    minHeight: 200
+    minHeight: 200,
+    backgroundColor: '#afb0af'
   },
   cardImage: {
     height: 180,

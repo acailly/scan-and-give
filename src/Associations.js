@@ -1,15 +1,12 @@
 import React, { Component } from "react";
 import { withStyles } from "@material-ui/core";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import { Link } from "react-router-dom";
 import Association from "./Association";
 import api from "./api";
 
 const styles = () => ({
   associations: {
     padding: 15,
-    backgroundColor: "#eeeeee"
+    backgroundColor: "#2b2c2c"
   },
   card: {
     display: "flex",
@@ -24,6 +21,9 @@ const styles = () => ({
   },
   cardContent: {
     flexGrow: 1
+  },
+  titre: {
+
   }
 });
 
@@ -50,9 +50,6 @@ class Associations extends Component {
     const { classes } = this.props;
     return (
       <div className={classes.associations}>
-        <Typography gutterBottom variant="h2" component="h1">
-          Associations
-        </Typography>
         {this.state.associations.map(a => (
           <Association
             key={a.id}
@@ -62,14 +59,6 @@ class Associations extends Component {
             description={a.description}
           />
         ))}
-        <Button
-          variant="contained"
-          color="primary"
-          component={Link}
-          to={"/dons"}
-        >
-          Résultats
-        </Button>
       </div>
     );
   }
