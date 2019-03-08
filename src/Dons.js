@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import Don from "./Don";
 import api from "./api";
-import {withStyles} from "@material-ui/core";
+import { withStyles } from "@material-ui/core";
 
 const styles = () => ({
   dons: {
     padding: 15,
     backgroundColor: "#383839"
-  },
+  }
 });
 
 class Dons extends Component {
