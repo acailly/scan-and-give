@@ -14,15 +14,44 @@ const styles = theme => ({
     backgroundSize: 'contain',
     alignSelf: 'center'
   },
-  resume: {
-    display: 'flex',
-    alignItems: 'center',
-    padding: '10px'
+  cardTitre: {
+    color: '#00a94e',
+    textAlign: 'center'
   },
-  layout: {
+  resumeCard: {
+    backgroundColor: 'white',
+    borderRadius: 10,
+    display: 'flex',
+    flexDirection: 'column',
+    padding: 15
+  },
+  left: {
+    width: '50%',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center'
+  },
+  info: {
+    backgroundColor: 'white',
+    width: 300,
+    textAlign: 'center',
+    borderRadius: 10,
+    height: 50,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  resume: {
+    display: 'flex',
+    alignItems: 'center',
+    padding: '10px',
+    flexDirection: 'column',
+  },
+  layout: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#383839'
   },
   modal: {
     position: "absolute",
@@ -33,6 +62,10 @@ const styles = theme => ({
     top: '50%',
     left: '50%',
     transform: `translate(-50%, -50%)`,
+  },
+  scanner: {
+    borderRadius: 10,
+    boxShadow: '1px 1px 100px #4e7b53'
   }
 });
 
@@ -132,12 +165,14 @@ class Scanner extends Component {
       const {classes} = this.props;
       return (
         <div className={classes.resume}>
-          <CardMedia
-            className={classes.cardImage}
-            image={'/' + this.state.association.image}
-            title={this.state.association.nom}
-          />
-          <h1>{this.state.association.nom}</h1>
+          <div className={classes.resumeCard}>
+            <CardMedia
+              className={classes.cardImage}
+              image={'/' + this.state.association.image}
+              title={this.state.association.nom}
+            />
+            <h1 className={classes.cardTitre}>{this.state.association.nom}</h1>
+          </div>
         </div>
       );
     } else {
@@ -176,10 +211,13 @@ class Scanner extends Component {
           </div>
         </Modal>
         <div className={classes.layout}>
-          {this.getAssociation()}
+          <div className={classes.left}>
+            <span className={classes.info}>Scannez VOTRE badge ici =></span>
+            {this.getAssociation()}
+          </div>
           <div>
             <video ref={this.videoRef} hidden/>
-            <canvas ref={this.canvasRef} hidden={this.state.loading}/>
+            <canvas className={classes.scanner} ref={this.canvasRef} hidden={this.state.loading}/>
           </div>
         </div>
       </div>
