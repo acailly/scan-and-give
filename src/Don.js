@@ -8,7 +8,8 @@ const styles = () => ({
   },
   content: {
     paddingRight: 30,
-    color: "#333"
+    color: "#333",
+    marginBottom: "20px"
   },
   cardImageContainer: {
     flex: "0 0 330px",
@@ -63,6 +64,9 @@ class Don extends Component {
           <h2 className={classes.titre}>{this.props.association}</h2>
           <Typography variant="h2" component="h1" className={classes.content}>
             {this.props.nombre}€ grâce à vous !
+          </Typography>
+          <Typography variant="h4" component="h1" className={classes.content}>
+            soit 12 repas distribués
           </Typography>
         </div>
       </div>
