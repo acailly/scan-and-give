@@ -6,7 +6,7 @@ import {withStyles} from "@material-ui/core";
 const styles = () => ({
   dons: {
     padding: 15,
-    backgroundColor: "#2b2c2c"
+    backgroundColor: "#383839"
   },
 });
 

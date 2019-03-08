@@ -14,7 +14,7 @@ const styles = () => ({
     fontSize: 64,
     display: "flex",
     alignItems: "center",
-    backgroundColor: "#2b2c2c",
+    backgroundColor: "#383839",
     justifyContent: "center",
     paddingTop: "10px"
   },

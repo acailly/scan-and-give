@@ -6,7 +6,7 @@ import api from "./api";
 const styles = () => ({
   associations: {
     padding: 15,
-    backgroundColor: "#2b2c2c"
+    backgroundColor: "#383839"
   },
   card: {
     display: "flex",
