@@ -1,9 +1,9 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import jsQR from "jsqr";
 import api from "./api";
 import CardMedia from "@material-ui/core/CardMedia";
-import {withStyles} from "@material-ui/core";
-import objectHash from 'object-hash';
+import { withStyles } from "@material-ui/core";
+import objectHash from "object-hash";
 import Modal from "@material-ui/core/Modal";
 import Icon from "@material-ui/core/Icon";
 
@@ -11,47 +11,47 @@ const styles = theme => ({
   cardImage: {
     height: 180,
     width: 450,
-    backgroundSize: 'contain',
-    alignSelf: 'center'
+    backgroundSize: "contain",
+    alignSelf: "center"
   },
   cardTitre: {
-    color: '#00a94e',
-    textAlign: 'center'
+    color: "#00a94e",
+    textAlign: "center"
   },
   resumeCard: {
-    backgroundColor: 'white',
+    backgroundColor: "white",
     borderRadius: 10,
-    display: 'flex',
-    flexDirection: 'column',
+    display: "flex",
+    flexDirection: "column",
     padding: 15
   },
   left: {
-    width: '50%',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center'
+    width: "50%",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center"
   },
   info: {
-    backgroundColor: 'white',
+    backgroundColor: "white",
     width: 300,
-    textAlign: 'center',
+    textAlign: "center",
     borderRadius: 10,
     height: 50,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center'
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center"
   },
   resume: {
-    display: 'flex',
-    alignItems: 'center',
-    padding: '10px',
-    flexDirection: 'column',
+    display: "flex",
+    alignItems: "center",
+    padding: "10px",
+    flexDirection: "column"
   },
   layout: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#383839'
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#383839"
   },
   modal: {
     position: "absolute",
@@ -59,13 +59,13 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
     padding: theme.spacing.unit * 4,
-    top: '50%',
-    left: '50%',
-    transform: `translate(-50%, -50%)`,
+    top: "50%",
+    left: "50%",
+    transform: `translate(-50%, -50%)`
   },
   scanner: {
     borderRadius: 10,
-    boxShadow: '1px 1px 100px #4e7b53'
+    boxShadow: "1px 1px 100px #4e7b53"
   }
 });
 
@@ -81,13 +81,15 @@ class Scanner extends Component {
   };
 
   componentDidMount() {
-    api.getAssociation(this.props.match.params.associationId).then(response => this.setState({association: response}));
+    api
+      .getAssociation(this.props.match.params.associationId)
+      .then(response => this.setState({ association: response }));
     navigator.mediaDevices.enumerateDevices().then(this.onEnumerateDevices);
 
     //TODO ACY Select webcam : https://www.twilio.com/blog/2018/04/choosing-cameras-javascript-mediadevices-api.html
 
     navigator.mediaDevices
-    // .getUserMedia({ video: { facingMode: "environment" } })
+      // .getUserMedia({ video: { facingMode: "environment" } })
       .getUserMedia({
         video: {
           deviceId:
@@ -112,7 +114,7 @@ class Scanner extends Component {
     const video = this.videoRef.current;
     if (this.state.loading && video.readyState === video.HAVE_ENOUGH_DATA) {
       this.setState({
-        loading: false,
+        loading: false
       });
       return;
     }
@@ -124,6 +126,9 @@ class Scanner extends Component {
         const canvasContext = canvas.getContext("2d");
         canvas.height = video.videoHeight;
         canvas.width = video.videoWidth;
+        //Inversion du canvas pour la camera frontale
+        canvasContext.translate(video.videoWidth, 0);
+        canvasContext.scale(-1, 1);
         canvasContext.drawImage(video, 0, 0, canvas.width, canvas.height);
         const imageData = canvasContext.getImageData(
           0,
@@ -135,17 +140,21 @@ class Scanner extends Component {
           inversionAttempts: "dontInvert"
         });
         if (code && code.data && !this.state.donExist && !this.state.sending) {
-          this.setState({sending: true});
+          this.setState({ sending: true });
           api
-            .addDon(objectHash(code.data), new Date(), parseInt(this.props.match.params.associationId))
+            .addDon(
+              objectHash(code.data),
+              new Date(),
+              parseInt(this.props.match.params.associationId)
+            )
             .then(() => {
               this.props.history.push({
-                pathname: '/done',
+                pathname: "/done"
               });
             })
             .catch(error => {
               if (error.response.status === 400) {
-                this.setState({donExist: true})
+                this.setState({ donExist: true });
               }
             });
         }
@@ -157,18 +166,18 @@ class Scanner extends Component {
     const videoDevices = mediaDevices.filter(
       mediaDevice => mediaDevice.kind === "videoinput"
     );
-    this.setState({videoDevices});
+    this.setState({ videoDevices });
   };
 
   getAssociation = () => {
     if (this.state.association) {
-      const {classes} = this.props;
+      const { classes } = this.props;
       return (
         <div className={classes.resume}>
           <div className={classes.resumeCard}>
             <CardMedia
               className={classes.cardImage}
-              image={'/' + this.state.association.image}
+              image={"/" + this.state.association.image}
               title={this.state.association.nom}
             />
             <h1 className={classes.cardTitre}>{this.state.association.nom}</h1>
@@ -176,7 +185,7 @@ class Scanner extends Component {
         </div>
       );
     } else {
-      return (<div></div>);
+      return <div />;
     }
   };
 
@@ -187,16 +196,16 @@ class Scanner extends Component {
     return {
       top: `${top}%`,
       left: `${left}%`,
-      transform: `translate(-${top}%, -${left}%)`,
+      transform: `translate(-${top}%, -${left}%)`
     };
   }
 
   handleClose = () => {
-    this.setState({donExist: false});
+    this.setState({ donExist: false });
   };
 
   render() {
-    const {classes} = this.props;
+    const { classes } = this.props;
     return (
       <div>
         <Modal
@@ -216,8 +225,12 @@ class Scanner extends Component {
             {this.getAssociation()}
           </div>
           <div>
-            <video ref={this.videoRef} hidden/>
-            <canvas className={classes.scanner} ref={this.canvasRef} hidden={this.state.loading}/>
+            <video ref={this.videoRef} hidden />
+            <canvas
+              className={classes.scanner}
+              ref={this.canvasRef}
+              hidden={this.state.loading}
+            />
           </div>
         </div>
       </div>

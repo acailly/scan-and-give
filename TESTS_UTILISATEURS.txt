@@ -22,7 +22,7 @@ X Augmenter la taille de la police utilis�e pour la description
 
 === ECRAN DE SCAN ===
 
-L'affichage pour scanner le badge est invers�
+X L'affichage pour scanner le badge est invers�
 
 BUG : Le scan se met parfois � ne plus marcher. Ca semble arriver quand on scan un badge qui a d�j� donn�.
 
