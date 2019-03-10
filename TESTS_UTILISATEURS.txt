@@ -24,7 +24,7 @@ X Augmenter la taille de la police utilis�e pour la description
 
 X L'affichage pour scanner le badge est invers�
 
-BUG : Le scan se met parfois � ne plus marcher. Ca semble arriver quand on scan un badge qui a d�j� donn�.
+X BUG : Le scan se met parfois � ne plus marcher. Ca semble arriver quand on scan un badge qui a d�j� donn�.
 
 Il manque un bouton pour retourner au choix des associations au cas o� on s'est tromp�
 

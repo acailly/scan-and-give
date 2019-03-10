@@ -76,7 +76,7 @@ class Scanner extends Component {
     loading: true,
     videoDevices: [],
     association: null,
-    donExist: false,
+    dontExist: false,
     sending: false
   };
 
@@ -139,7 +139,7 @@ class Scanner extends Component {
         const code = jsQR(imageData.data, imageData.width, imageData.height, {
           inversionAttempts: "dontInvert"
         });
-        if (code && code.data && !this.state.donExist && !this.state.sending) {
+        if (code && code.data && !this.state.dontExist && !this.state.sending) {
           this.setState({ sending: true });
           api
             .addDon(
@@ -154,7 +154,7 @@ class Scanner extends Component {
             })
             .catch(error => {
               if (error.response.status === 400) {
-                this.setState({ donExist: true });
+                this.setState({ dontExist: true, sending: false });
               }
             });
         }
@@ -201,7 +201,7 @@ class Scanner extends Component {
   }
 
   handleClose = () => {
-    this.setState({ donExist: false });
+    this.setState({ dontExist: false });
   };
 
   render() {
@@ -211,7 +211,7 @@ class Scanner extends Component {
         <Modal
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"
-          open={this.state.donExist}
+          open={this.state.dontExist}
           onClose={this.handleClose}
         >
           <div className={classes.modal}>
