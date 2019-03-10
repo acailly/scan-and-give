@@ -51,6 +51,12 @@ const styles = () => ({
 class Don extends Component {
   render() {
     const { classes } = this.props;
+    let nombre = Math.floor(this.props.nombre / this.props.nombre_correspondance);
+    let correspondance = this.props.correspondance && nombre >= 1 ? (
+      <Typography variant="h4" component="h1" className={classes.content}>
+        soit {nombre} {this.props.correspondance}
+      </Typography>
+    ) : '';
     return (
       <div className={classes.card}>
         <div className={classes.cardImageContainer}>
@@ -65,9 +71,7 @@ class Don extends Component {
           <Typography variant="h2" component="h1" className={classes.content}>
             {this.props.nombre}€ grâce à vous !
           </Typography>
-          <Typography variant="h4" component="h1" className={classes.content}>
-            soit 12 repas distribués
-          </Typography>
+          {correspondance}
         </div>
       </div>
     );

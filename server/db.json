@@ -16,13 +16,17 @@
       "id": 3,
       "nom": "Les RESTOS du COEUR",
       "image": "restos.png",
-      "description": "Fondés par Coluche en 1985, les Restos du Cœur est une association loi de 1901, reconnue d’utilité publique, sous le nom officiel de « les Restaurants du Cœur – les Relais du Cœur ». Ils ont pour but « d’aider et d’apporter une assistance bénévole aux personnes démunies, notamment dans le domaine alimentaire par l’accès à des repas gratuits, et par la participation à leur insertion sociale et économique, ainsi qu’à toute action contre la pauvreté sous toutes ses formes »."
+      "description": "Fondés par Coluche en 1985, les Restos du Cœur est une association loi de 1901, reconnue d’utilité publique, sous le nom officiel de « les Restaurants du Cœur – les Relais du Cœur ». Ils ont pour but « d’aider et d’apporter une assistance bénévole aux personnes démunies, notamment dans le domaine alimentaire par l’accès à des repas gratuits, et par la participation à leur insertion sociale et économique, ainsi qu’à toute action contre la pauvreté sous toutes ses formes ».",
+      "nombre_correspondance": 1,
+      "correspondance": "repas distibués"
     },
     {
       "id": 4,
       "nom": "TOUS POUR la Syrie",
       "image": "syrie.png",
-      "description": "L’association a pour buts d’apporter une aide humanitaire et médicale gratuite à la population syrienne à l’intérieur ou à l’extérieur de la Syrie et de développer l’amitié et la solidarité entre le peuple français et le peuple syrien."
+      "description": "L’association a pour buts d’apporter une aide humanitaire et médicale gratuite à la population syrienne à l’intérieur ou à l’extérieur de la Syrie et de développer l’amitié et la solidarité entre le peuple français et le peuple syrien.",
+      "nombre_correspondance": 10,
+      "correspondance": "enfants scolarisés"
     },
     {
       "id": 5,
@@ -51,6 +55,11 @@
       "hash": "8ff517b7c494d1e08e47563fad97b1d4bd2fba9d",
       "date": "2019-02-20T15:10:41.195Z",
       "associationId": 3
+    },
+    {
+      "hash": "61d1eb37a301efd10a81cf7d87337179b4f3f2fd",
+      "date": "2019-03-10T23:27:43.000Z",
+      "associationId": 4
     }
   ]
 }

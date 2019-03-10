@@ -60,6 +60,8 @@ app.get("/api/dons", function(req, res) {
         associationId,
         association: association.nom,
         image: association.image,
+        nombre_correspondance: association.nombre_correspondance,
+        correspondance: association.correspondance,
         dons: dons.length
       };
     })

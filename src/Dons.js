@@ -40,6 +40,8 @@ class Dons extends Component {
             association={don.association}
             image={don.image}
             nombre={don.dons}
+            correspondance={don.correspondance}
+            nombre_correspondance={don.nombre_correspondance}
           />
         ))}
       </div>
