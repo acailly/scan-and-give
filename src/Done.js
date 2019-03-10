@@ -8,7 +8,7 @@ const styles = () => ({
     color: "white",
     fontSize: "50px",
     textAlign: "center",
-    marginTop: "75px"
+    marginTop: "140px"
   },
   button: {
     marginTop: "40px",
