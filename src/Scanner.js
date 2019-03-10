@@ -33,7 +33,7 @@ const styles = theme => ({
   },
   info: {
     backgroundColor: "white",
-    width: 300,
+    width: 400,
     textAlign: "center",
     borderRadius: 10,
     height: 50,
@@ -221,8 +221,8 @@ class Scanner extends Component {
         </Modal>
         <div className={classes.layout}>
           <div className={classes.left}>
-            <span className={classes.info}>Scannez VOTRE badge ici =></span>
             {this.getAssociation()}
+            <span className={classes.info}>Veuillez scannez VOTRE badge ici =></span>
           </div>
           <div>
             <video ref={this.videoRef} hidden />
