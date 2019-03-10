@@ -7,32 +7,32 @@ La formulation "Donnez 1 euro" laisse penser que le visiteur va payer de sa poch
 
 === ECRAN DE CHOIX DES ASSOS ===
 
-L'ordre des associations dans l'application n'est pas le même que sur le kakemono
+X L'ordre des associations dans l'application n'est pas le mï¿½me que sur le kakemono
 
 Rajouter un bouton "SOUTENIR" pour mettre en valeur le fait qu'il faut cliquer
 
-Ajouter un texte pour indiquer qu'il faut faire défiler la liste
+Ajouter un texte pour indiquer qu'il faut faire dï¿½filer la liste
 
 Citer Zenika ou placer le logo
 
-Afficher 2 associations par ligne pour afficher la totalité des assos sur un seul écran
+Afficher 2 associations par ligne pour afficher la totalitï¿½ des assos sur un seul ï¿½cran
 
-Augmenter la taille de la police utilisée pour la description
+X Augmenter la taille de la police utilisï¿½e pour la description
 
 
 === ECRAN DE SCAN ===
 
-L'affichage pour scanner le badge est inversé
+L'affichage pour scanner le badge est inversï¿½
 
-BUG : Le scan se met parfois à ne plus marcher. Ca semble arriver quand on scan un badge qui a déjà donné.
+BUG : Le scan se met parfois ï¿½ ne plus marcher. Ca semble arriver quand on scan un badge qui a dï¿½jï¿½ donnï¿½.
 
-Il manque un bouton pour retourner au choix des associations au cas où on s'est trompé
+Il manque un bouton pour retourner au choix des associations au cas oï¿½ on s'est trompï¿½
 
-Déplacer le texte "Scanner votre badge" en dessous du logo des petits doudous
+Dï¿½placer le texte "Scanner votre badge" en dessous du logo des petits doudous
 
 Remplacer "Scanner votre badge" par "Veuillez scanner votre badge"
 
-Utiliser une webcam comme accessoire pour scanner au lieu de la caméra frontale
+Utiliser une webcam comme accessoire pour scanner au lieu de la camï¿½ra frontale
 
 
 === ECRAN DE REMERCIEMENT ===
@@ -46,9 +46,9 @@ Ajouter le logo Zenika
 
 Afficher le montant total des dons
 
-Afficher la totalité des informations sur un écran (pas de défilement)
+Afficher la totalitï¿½ des informations sur un ï¿½cran (pas de dï¿½filement)
 
-Adapter le texte "Soit 12 repas distribués" pour chaque association
+Adapter le texte "Soit 12 repas distribuï¿½s" pour chaque association
 
 
 
