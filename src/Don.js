@@ -4,7 +4,8 @@ import Typography from "@material-ui/core/Typography";
 
 const styles = () => ({
   titre: {
-    color: "#00a94e"
+    color: "#00a94e",
+    textAlign: 'center'
   },
   content: {
     paddingRight: 30,
@@ -12,7 +13,7 @@ const styles = () => ({
     marginBottom: "20px"
   },
   cardImageContainer: {
-    flex: "0 0 330px",
+    flex: "0 0 30%",
     alignItems: "center",
     display: "flex",
     justifyContent: "center"
@@ -21,8 +22,7 @@ const styles = () => ({
     borderRadius: 10,
     width: "100%",
     display: "flex",
-    marginBottom: 15,
-    minHeight: 200,
+    minHeight: 170,
     backgroundColor: "white",
     fontFamily: "Ghostbusters",
     fontStyle: "normal",
@@ -30,7 +30,7 @@ const styles = () => ({
   },
   cardImage: {
     maxWidth: 300,
-    height: 180
+    height: 120
   },
   cardContent: {
     flexGrow: 1
@@ -68,8 +68,8 @@ class Don extends Component {
         </div>
         <div className={classes.cardContent}>
           <h2 className={classes.titre}>{this.props.association}</h2>
-          <Typography variant="h2" component="h1" className={classes.content}>
-            {this.props.nombre}€ grâce à vous !
+          <Typography variant="h4" component="h1" className={classes.content}>
+            {this.props.nombre}€ reçu
           </Typography>
           {correspondance}
         </div>
