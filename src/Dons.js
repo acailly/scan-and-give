@@ -16,12 +16,15 @@ const styles = () => ({
   },
   zenika: {
     borderRadius: 10,
-    backgroundColor: 'white',
-    height: 60,
-    margin: '0 15px',
+    backgroundColor: '#b11e3e',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    textAlign: 'center',
+    padding: 15
+  },
+  zenikaContent: {
+    color: 'white'
   }
 });
 
@@ -48,15 +51,15 @@ class Dons extends Component {
     const {classes} = this.props;
     return (
       <div>
-        <div className={classes.zenika}>
-          <Typography variant="h4" component="h1" className={classes.content}>
-            Grâce à vous, Zenika va reverser au total {
-            this.state.dons.map(i => i.dons).reduce(function (a, b) {
-              return a + b;
-            }, 0)}€
-          </Typography>
-        </div>
         <div className={classes.dons}>
+          <div className={classes.zenika}>
+            <Typography variant="h4" component="h1" className={classes.zenikaContent}>
+              Grâce à vous, Zenika va reverser au total {
+              this.state.dons.map(i => i.dons).reduce(function (a, b) {
+                return a + b;
+              }, 0)}€
+            </Typography>
+          </div>
           {this.state.dons.map(don => (
             <Don
               key={don.associationId}

@@ -4,7 +4,9 @@
       "id": 1,
       "nom": "Les P’tits DOUDOUS",
       "image": "doudous.png",
-      "description": "Notre ambition est de faire évoluer les pratiques de soins à l’hôpital grâce à l’écoute des besoins des patients par les soignants. En donnant la possibilité aux soignants de proposer eux-mêmes, des idées et des projets d’amélioration, en s’appuyant sur le numérique et sur le développement durable, nous les amenons à faire évoluer leurs pratiques. L’impact social de notre projet est donc important. "
+      "description": "Notre ambition est de faire évoluer les pratiques de soins à l’hôpital grâce à l’écoute des besoins des patients par les soignants. En donnant la possibilité aux soignants de proposer eux-mêmes, des idées et des projets d’amélioration, en s’appuyant sur le numérique et sur le développement durable, nous les amenons à faire évoluer leurs pratiques. L’impact social de notre projet est donc important. ",
+      "nombre_correspondance": 5,
+      "correspondance": "doudous pour un enfant"
     },
     {
       "id": 2,
@@ -65,6 +67,31 @@
       "hash": "629b127c5a61b3a939ddfca218806ea58e33fa6b",
       "date": "2019-03-11T00:02:40.450Z",
       "associationId": 5
+    },
+    {
+      "hash": "8ff517b7c494d1e08e47563fad97b1d4bd2mba9b",
+      "date": "2019-02-20T15:10:41.193Z",
+      "associationId": 1
+    },
+    {
+      "hash": "8ff517q7c494d1e08e47563fad97b1d4bd2fba9b",
+      "date": "2019-02-20T15:10:41.193Z",
+      "associationId": 1
+    },
+    {
+      "hash": "8ff517b7c494d1e08e47563fad97b1d4bd2fbh9b",
+      "date": "2019-02-20T15:10:41.193Z",
+      "associationId": 1
+    },
+    {
+      "hash": "8ff517b7c494d1e08e47563fad97bdd4bd2fba9b",
+      "date": "2019-02-20T15:10:41.193Z",
+      "associationId": 1
+    },
+    {
+      "hash": "8ff517b7c494d1es8e47563fad97b1d4bd2fba9b",
+      "date": "2019-02-20T15:10:41.193Z",
+      "associationId": 1
     }
   ]
 }
