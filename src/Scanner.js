@@ -1,13 +1,13 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import jsQR from "jsqr";
 import api from "./api";
 import CardMedia from "@material-ui/core/CardMedia";
-import {withStyles} from "@material-ui/core";
+import { withStyles } from "@material-ui/core";
 import objectHash from "object-hash";
 import Modal from "@material-ui/core/Modal";
 import Icon from "@material-ui/core/Icon";
 import Fab from "@material-ui/core/Fab";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const styles = theme => ({
   cardImage: {
@@ -31,11 +31,11 @@ const styles = theme => ({
     width: "50%",
     display: "flex",
     flexDirection: "column",
-    alignItems: "center"
+    alignItems: "stretch"
   },
   info: {
-    backgroundColor: "white",
-    width: 400,
+    color: "white",
+    fontSize: "30px",
     textAlign: "center",
     borderRadius: 10,
     height: 50,
@@ -70,12 +70,12 @@ const styles = theme => ({
     boxShadow: "1px 1px 100px #4e7b53"
   },
   fab: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 15,
     left: 10,
     backgroundColor: "#b11e3e",
     "&:hover": {
-      backgroundColor: "#b11e3e",
+      backgroundColor: "#b11e3e"
     }
   },
   extendedIcon: {
@@ -97,13 +97,13 @@ class Scanner extends Component {
   componentDidMount() {
     api
       .getAssociation(this.props.match.params.associationId)
-      .then(response => this.setState({association: response}));
+      .then(response => this.setState({ association: response }));
     navigator.mediaDevices.enumerateDevices().then(this.onEnumerateDevices);
 
     //TODO ACY Select webcam : https://www.twilio.com/blog/2018/04/choosing-cameras-javascript-mediadevices-api.html
 
     navigator.mediaDevices
-    // .getUserMedia({ video: { facingMode: "environment" } })
+      // .getUserMedia({ video: { facingMode: "environment" } })
       .getUserMedia({
         video: {
           deviceId:
@@ -154,7 +154,7 @@ class Scanner extends Component {
           inversionAttempts: "dontInvert"
         });
         if (code && code.data && !this.state.dontExist && !this.state.sending) {
-          this.setState({sending: true});
+          this.setState({ sending: true });
           api
             .addDon(
               objectHash(code.data),
@@ -168,7 +168,7 @@ class Scanner extends Component {
             })
             .catch(error => {
               if (error.response.status === 400) {
-                this.setState({dontExist: true, sending: false});
+                this.setState({ dontExist: true, sending: false });
               }
             });
         }
@@ -180,12 +180,12 @@ class Scanner extends Component {
     const videoDevices = mediaDevices.filter(
       mediaDevice => mediaDevice.kind === "videoinput"
     );
-    this.setState({videoDevices});
+    this.setState({ videoDevices });
   };
 
   getAssociation = () => {
     if (this.state.association) {
-      const {classes} = this.props;
+      const { classes } = this.props;
       return (
         <div className={classes.resume}>
           <div className={classes.resumeCard}>
@@ -199,7 +199,7 @@ class Scanner extends Component {
         </div>
       );
     } else {
-      return <div/>;
+      return <div />;
     }
   };
 
@@ -215,11 +215,11 @@ class Scanner extends Component {
   }
 
   handleClose = () => {
-    this.setState({dontExist: false});
+    this.setState({ dontExist: false });
   };
 
   render() {
-    const {classes} = this.props;
+    const { classes } = this.props;
     return (
       <div>
         <Modal
@@ -236,17 +236,23 @@ class Scanner extends Component {
         <div className={classes.layout}>
           <div className={classes.left}>
             {this.getAssociation()}
-            <span className={classes.info}>Veuillez scannez VOTRE badge ici =></span>
-            <Fab variant="extended" color="primary" aria-label="Add" className={classes.fab} component={Link}
-                 to={"/"}>
-              <Icon className={classes.extendedIcon}>
-                arrow_back
-              </Icon>
+            <span className={classes.info}>
+              Veuillez scanner VOTRE badge ici =>
+            </span>
+            <Fab
+              variant="extended"
+              color="primary"
+              aria-label="Add"
+              className={classes.fab}
+              component={Link}
+              to={"/"}
+            >
+              <Icon className={classes.extendedIcon}>arrow_back</Icon>
               Retour
             </Fab>
           </div>
           <div>
-            <video ref={this.videoRef} hidden/>
+            <video ref={this.videoRef} hidden />
             <canvas
               className={classes.scanner}
               ref={this.canvasRef}
