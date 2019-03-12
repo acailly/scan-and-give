@@ -5,7 +5,8 @@ import Typography from "@material-ui/core/Typography";
 const styles = () => ({
   titre: {
     color: "#00a94e",
-    textAlign: "center"
+    textAlign: "center",
+    flex: "1 1 auto"
   },
   content: {
     paddingRight: 30,
@@ -17,7 +18,10 @@ const styles = () => ({
     flex: "0 0 100px",
     alignItems: "center",
     display: "flex",
-    justifyContent: "center"
+    justifyContent: "center",
+    marginLeft: "10px",
+    marginRight: "10px",
+    marginTop: "5px"
   },
   card: {
     borderRadius: 10,
