@@ -63,7 +63,10 @@ const styles = theme => ({
     padding: theme.spacing.unit * 4,
     top: "50%",
     left: "50%",
-    transform: `translate(-50%, -50%)`
+    transform: `translate(-50%, -50%)`,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center"
   },
   scanner: {
     borderRadius: 10,
@@ -230,7 +233,7 @@ class Scanner extends Component {
         >
           <div className={classes.modal}>
             <Icon color={"error"}>warning</Icon>
-            Vous avez déjà donné
+            VOUS AVEZ DEJA DONNE
           </div>
         </Modal>
         <div className={classes.layout}>
