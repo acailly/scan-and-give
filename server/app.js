@@ -2,10 +2,23 @@ const express = require("express");
 const low = require("lowdb");
 const FileSync = require("lowdb/adapters/FileSync");
 const bodyParser = require("body-parser");
+const cors = require("cors");
+const sse = require("./sse");
 const app = express();
 const adapter = new FileSync("db.json");
 const db = low(adapter);
 app.use(bodyParser.json());
+app.use(cors());
+app.use(sse);
+
+let connections = [];
+
+app.get("/sse", function(req, res) {
+  const donsByAssociationId = getDonsByAssociationId();
+  res.sseSetup();
+  res.sseSend(donsByAssociationId);
+  connections.push(res);
+});
 
 app.get("/api/associations", function(req, res) {
   const associations = db.get("associations").value();
@@ -31,6 +44,9 @@ app.post("/api/dons", function(req, res) {
       .get("dons")
       .push(req.body)
       .write();
+
+    const donsByAssociationId = getDonsByAssociationId();
+    connections.forEach(connection => connection.sseSend(donsByAssociationId));
   } else {
     res.status(400);
   }
@@ -48,6 +64,15 @@ app.get("/api/dons/:associationId", function(req, res) {
 });
 
 app.get("/api/dons", function(req, res) {
+  const donsByAssociationId = getDonsByAssociationId();
+  res.send(donsByAssociationId);
+});
+
+app.listen(3001, function() {
+  console.log("Example app listening on port 3001!");
+});
+
+function getDonsByAssociationId() {
   const donsByAssociationId = db
     .get("dons")
     .groupBy("associationId")
@@ -66,9 +91,5 @@ app.get("/api/dons", function(req, res) {
       };
     })
     .value();
-  res.send(donsByAssociationId);
-});
-
-app.listen(3001, function() {
-  console.log("Example app listening on port 3001!");
-});
+  return donsByAssociationId;
+}
