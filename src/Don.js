@@ -12,7 +12,8 @@ const styles = () => ({
     paddingRight: 30,
     color: "#333",
     marginBottom: "20px",
-    textAlign: "center"
+    textAlign: "center",
+    fontSize: "2rem"
   },
   cardImageContainer: {
     flex: "0 0 100px",
