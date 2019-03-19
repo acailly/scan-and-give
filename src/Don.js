@@ -67,14 +67,14 @@ class Don extends Component {
     let nombre = Math.floor(
       this.props.nombre / this.props.nombre_correspondance
     );
-    let correspondance =
-      this.props.correspondance && nombre >= 1 ? (
+    let correspondance = "";
+    if(this.props.correspondance) {
+      correspondance = nombre > 0 ?(
         <Typography variant="h4" component="h1" className={classes.content}>
-          soit {nombre} {this.props.correspondance}
+          soit {nombre} {nombre === 1 ? this.props.correspondance : this.props.correspondances}
         </Typography>
-      ) : (
-        ""
-      );
+      ) : "";
+    }
     return (
       <div className={classes.card}>
         <div className={classes.cardImageContainer}>

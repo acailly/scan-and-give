@@ -90,6 +90,7 @@ class Dons extends Component {
               image={don.image}
               nombre={don.dons}
               correspondance={don.correspondance}
+              correspondances={don.correspondances}
               nombre_correspondance={don.nombre_correspondance}
             />
           ))}

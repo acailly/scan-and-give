@@ -87,6 +87,7 @@ function getDonsByAssociationId() {
         image: association.image,
         nombre_correspondance: association.nombre_correspondance,
         correspondance: association.correspondance,
+        correspondances: association.correspondances,
         dons: dons.length
       };
     })
