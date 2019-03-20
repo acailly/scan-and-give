@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import {Icon, withStyles} from "@material-ui/core";
+import { Icon, withStyles } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
+import ButtonBase from "@material-ui/core/ButtonBase";
 
 const styles = () => ({
   titre: {
@@ -11,7 +12,7 @@ const styles = () => ({
   content: {
     paddingRight: 30,
     fontSize: "18px",
-    textAlign: 'justify'
+    textAlign: "justify"
   },
   cardImageContainer: {
     flex: "1 0 330px",
@@ -42,7 +43,7 @@ const styles = () => ({
     color: "#C00"
   },
   cardButton: {
-    display: 'flex'
+    display: "flex"
   },
   button: {
     color: "#C00",
@@ -62,31 +63,33 @@ class Association extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <div className={classes.card}>
-        <div className={classes.cardImageContainer}>
-          <img
-            className={classes.cardImage}
-            src={this.props.image}
-            alt={this.props.nom}
-          />
+      <ButtonBase focusRipple component={Link} to={"/scanner/" + this.props.id}>
+        <div className={classes.card}>
+          <div className={classes.cardImageContainer}>
+            <img
+              className={classes.cardImage}
+              src={this.props.image}
+              alt={this.props.nom}
+            />
+          </div>
+          <div className={classes.cardContent}>
+            <h2 className={classes.titre}>{this.props.nom}</h2>
+            <Typography
+              component="p"
+              className={classes.content}
+              dangerouslySetInnerHTML={{
+                __html: this.props.description.replace(/\n/g, "<br />")
+              }}
+            />
+          </div>
+          <div className={classes.cardButton}>
+            <Button className={classes.button}>
+              Soutenir
+              <Icon className={classes.rightIcon}>card_giftcard</Icon>
+            </Button>
+          </div>
         </div>
-        <div className={classes.cardContent}>
-          <h2 className={classes.titre}>{this.props.nom}</h2>
-          <Typography
-            component="p"
-            className={classes.content}
-            dangerouslySetInnerHTML={{
-              __html: this.props.description.replace(/\n/g, "<br />")
-            }}
-          />
-        </div>
-        <div className={classes.cardButton}>
-          <Button className={classes.button} component={Link} to={"/scanner/" + this.props.id}>
-            Soutenir
-            <Icon className={classes.rightIcon}>card_giftcard</Icon>
-          </Button>
-        </div>
-      </div>
+      </ButtonBase>
     );
   }
 }

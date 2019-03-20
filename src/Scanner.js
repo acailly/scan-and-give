@@ -129,7 +129,11 @@ class Scanner extends Component {
 
   analyzeVideoFrame = () => {
     const video = this.videoRef.current;
-    if (this.state.loading && video.readyState === video.HAVE_ENOUGH_DATA) {
+    if (
+      this.state.loading &&
+      video &&
+      video.readyState === video.HAVE_ENOUGH_DATA
+    ) {
       this.setState({
         loading: false
       });

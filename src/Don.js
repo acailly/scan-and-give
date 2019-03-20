@@ -68,12 +68,18 @@ class Don extends Component {
       this.props.nombre / this.props.nombre_correspondance
     );
     let correspondance = "";
-    if(this.props.correspondance) {
-      correspondance = nombre > 0 ?(
-        <Typography variant="h4" component="h1" className={classes.content}>
-          soit {nombre} {nombre === 1 ? this.props.correspondance : this.props.correspondances}
-        </Typography>
-      ) : "";
+    if (this.props.correspondance) {
+      correspondance =
+        nombre > 0 ? (
+          <Typography variant="h4" component="h1" className={classes.content}>
+            soit {nombre}{" "}
+            {nombre === 1
+              ? this.props.correspondance
+              : this.props.correspondances}
+          </Typography>
+        ) : (
+          ""
+        );
     }
     return (
       <div className={classes.card}>
@@ -87,7 +93,7 @@ class Don extends Component {
         </div>
         <div className={classes.cardContent}>
           <Typography variant="h4" component="h1" className={classes.content}>
-            {this.props.nombre}€ reçu
+            {this.props.nombre}€ reçus
           </Typography>
           {correspondance}
         </div>
