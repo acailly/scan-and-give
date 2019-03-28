@@ -103,16 +103,11 @@ class Scanner extends Component {
       .then(response => this.setState({ association: response }));
     navigator.mediaDevices.enumerateDevices().then(this.onEnumerateDevices);
 
-    //TODO ACY Select webcam : https://www.twilio.com/blog/2018/04/choosing-cameras-javascript-mediadevices-api.html
+    // If you want to add the webcam selection, this website can help:
+    // https://www.twilio.com/blog/2018/04/choosing-cameras-javascript-mediadevices-api.html
 
     navigator.mediaDevices
-      // .getUserMedia({ video: { facingMode: "environment" } })
-      .getUserMedia({
-        video: {
-          deviceId:
-            "23ccb9f41f9998e0fa16662561502eecfd3a8f0b50c3d5385ac2b66489f76d72"
-        }
-      })
+      .getUserMedia({ video: { facingMode: "environment" } })
       .then(stream => {
         const video = this.videoRef.current;
         video.srcObject = stream;
@@ -147,7 +142,9 @@ class Scanner extends Component {
         const canvasContext = canvas.getContext("2d");
         canvas.height = video.videoHeight;
         canvas.width = video.videoWidth;
-        //Inversion du canvas pour la camera frontale
+        // Horizontally invert the canvas for the front camera
+        // If we do not do that, when the user moves his arm to the
+        // right he sees it going to the left on the screen
         canvasContext.translate(video.videoWidth, 0);
         canvasContext.scale(-1, 1);
         canvasContext.drawImage(video, 0, 0, canvas.width, canvas.height);

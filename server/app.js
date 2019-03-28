@@ -1,15 +1,25 @@
-const express = require("express");
+// ================= DATABASE SETUP ================== //
+// Low DB is used as the flat file JSON database
+
 const low = require("lowdb");
 const FileSync = require("lowdb/adapters/FileSync");
+const adapter = new FileSync("db.json");
+const db = low(adapter);
+
+// ================= DATABASE SETUP ================== //
+// Express is used as the HTTP server
+
+const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const sse = require("./sse");
 const app = express();
-const adapter = new FileSync("db.json");
-const db = low(adapter);
 app.use(bodyParser.json());
 app.use(cors());
 app.use(sse);
+
+// ================= REAL TIME ENDPOINT  ================== //
+// We use server sent event to trigger the client when an update is made
 
 let connections = [];
 
@@ -19,6 +29,8 @@ app.get("/sse", function(req, res) {
   res.sseSend(donsByAssociationId);
   connections.push(res);
 });
+
+// ================= ASSOCIATIONS ENDPOINTS  ================== //
 
 app.get("/api/associations", function(req, res) {
   const associations = db.get("associations").value();
@@ -32,6 +44,8 @@ app.get("/api/associations/:associationId", function(req, res) {
     .value();
   res.send(association);
 });
+
+// ================= DONS ENDPOINTS  ================== //
 
 app.post("/api/dons", function(req, res) {
   const hasDon = db
@@ -68,10 +82,6 @@ app.get("/api/dons", function(req, res) {
   res.send(donsByAssociationId);
 });
 
-app.listen(3001, function() {
-  console.log("Example app listening on port 3001!");
-});
-
 function getDonsByAssociationId() {
   const donsByAssociationId = db
     .get("dons")
@@ -94,3 +104,9 @@ function getDonsByAssociationId() {
     .value();
   return donsByAssociationId;
 }
+
+// ================= HERE WE GO!  ================== //
+
+app.listen(3001, function() {
+  console.log("Example app listening on port 3001!");
+});

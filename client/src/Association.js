@@ -27,7 +27,7 @@ const styles = () => ({
     marginBottom: 15,
     minHeight: 200,
     backgroundColor: "white",
-    fontFamily: "Ghostbusters",
+    fontFamily: "NotoSerif-Bold",
     fontStyle: "normal",
     fontWeight: 400
   },

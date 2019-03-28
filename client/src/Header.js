@@ -6,8 +6,8 @@ import Icon from "@material-ui/core/Icon";
 import Button from "@material-ui/core/Button";
 
 const styles = () => ({
-  zenikanard: {
-    height: 180,
+  codingTheWorld: {
+    height: 180
   },
   zenika: {
     height: 100
@@ -21,7 +21,7 @@ const styles = () => ({
     paddingTop: "10px"
   },
   title: {
-    margin: '0 100px',
+    margin: "0 100px",
     color: "#4e7b53",
     textShadow:
       "0 0 5px #fff, 0 0 10px #fff, 0 0 20px #4e7b53, 0 0 30px #4e7b53, 0 0 40px #4e7b53, 0 0 55px #4e7b53, 0 0 75px #4e7b53"
@@ -37,13 +37,13 @@ class Header extends Component {
       <div className={classes.header}>
         <Link to="/">
           <img
-            src="/zenikanard2.png"
-            alt="zenikanard"
-            className={classes.zenikanard}
+            src="/coding_the_world.png"
+            alt="Coding the World"
+            className={classes.codingTheWorld}
           />
         </Link>
-        <span className={classes.title}>Breizh Give</span>
-        <img className={classes.zenika} src="/zenika.png" alt="zenika"/>
+        <span className={classes.title}>SCAN AND GIVE</span>
+        <img className={classes.zenika} src="/zenika.png" alt="zenika" />
         <div>
           <Button
             className={classes.button}

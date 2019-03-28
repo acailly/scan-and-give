@@ -11,13 +11,13 @@
       "program": "${workspaceFolder}/server/app.js"
     },
     {
-      "name": "Chrome",
+      "name": "Client",
       "type": "chrome",
       "request": "launch",
       "url": "http://localhost:3000",
-      "webRoot": "${workspaceFolder}/src",
+      "webRoot": "${workspaceFolder}/client/src",
       "sourceMapPathOverrides": {
-        "webpack:///src/*": "${webRoot}/*"
+        "webpack:///client/src/*": "${webRoot}/*"
       }
     }
   ]

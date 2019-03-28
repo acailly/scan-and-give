@@ -31,7 +31,7 @@ const styles = () => ({
     flexDirection: "column",
     minHeight: 170,
     backgroundColor: "white",
-    fontFamily: "Ghostbusters",
+    fontFamily: "NotoSerif-Bold",
     fontStyle: "normal",
     fontWeight: 400
   },
